@@ -111,7 +111,7 @@
     .explore-card .overlay {
       position: absolute;
       inset: 0;
-      background: rgba(9, 56, 110, 0.55);
+      background: rgba(110, 9, 73, 0.55);
       color: #fff;
       opacity: 0;
       display: flex;
@@ -151,6 +151,159 @@
       position: relative;
       z-index: 1;
     }
+
+    /* ===== FEATURED COURSES / EXPLORE ===== */
+    .featured-courses {
+      padding: 80px 0;
+      background: #f2f4f9;
+    }
+
+    .featured-courses .section-title {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .featured-courses .section-title small {
+      display: inline-block;
+      letter-spacing: 1px;
+      color: #f59e0b;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .featured-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .featured-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 28px rgba(0, 0, 0, 0.2);
+    }
+
+    .featured-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .featured-card .card-body {
+      padding: 22px 18px 26px;
+    }
+
+    .featured-card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      color: #0d47a1;
+    }
+
+    .featured-card p {
+      margin: 0 0 16px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .featured-card .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: #f59e0b;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.25s ease;
+    }
+
+    .featured-card .btn:hover {
+      background: #dc7a0d;
+    }
+
+    /* ===== TEACHERS SECTION ===== */
+    .teachers {
+      padding: 80px 0;
+      background: #f7f8fb;
+    }
+
+    .teachers .section-title h2 {
+      color: #0d47a1;
+    }
+
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .teacher-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      text-align: center;
+      padding-bottom: 22px;
+    }
+
+    .teacher-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .teacher-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .teacher-card .teacher-body {
+      padding: 18px 16px 16px;
+    }
+
+    .teacher-card h3 {
+      margin: 14px 0 6px;
+      font-size: 20px;
+      color: #0d47a1;
+    }
+
+    .teacher-card p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.5;
+    }
+
+    .teacher-card .btn {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: #f59e0b;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.25s ease;
+      box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
+    }
+
+    .teacher-card .btn:hover {
+      background: #dc7a0d;
+    }
   </style>
 </head>
 
@@ -159,6 +312,7 @@
   <div class="loader-wrapper">
     <div class="loader"></div>
   </div>
+
   <header id="header">
     <div class="top-bar">
       <div class="contact-info">
@@ -172,11 +326,12 @@
         <div class="contact-item">
           <a href="tel:+919448702107">📞 +91 9448702107</a>
           <a href="tel:+918884882346">📞 +91 8884882346</a>
-          <!-- <a href="tel:+919380227176">📞 +91 9380227176</a> -->
         </div>
 
         <div class="contact-item">
-          <a href="mailto:sspublicschoolvigneshwaranagar@gmail.com">sspublicschoolvigneshwaranagar@gmail.com</a>
+          <a href="mailto:sspublicschoolvigneshwaranagar@gmail.com">
+            sspublicschoolvigneshwaranagar@gmail.com
+          </a>
         </div>
 
       </div>
@@ -184,101 +339,142 @@
 
     <nav class="navbar">
       <div class="logo">
-        <img src="./sspslogo.jpeg" height="50px" alt="SS Public School Logo">
+        <img src="./sspslogo.jpeg" height="60px" id="schoollogo" alt="SS Public School Logo">
         <p>SS Public School</p>
       </div>
       <div class="menu-toggle" id="menu-toggle">☰</div>
 
       <ul class="nav-links" id="nav-links">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#academics">Academics</a></li>
-        <li><a href="index.html#achievements">Achievements</a></li>
-        <li><a href="index.html#admissions">Admissions</a></li>
-        <li><a href="index.html#testimonials">Testimonials</a></li>
-        <li><a href="index.html#gallery">Gallery</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#academics">Academics</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#admissions">Admissions</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
-  <section class="academics" id="academics">
+
+  <!-- Featured Courses / Explore Our School -->
+  <section class="featured-courses" id="featured">
     <div class="container">
-
       <div class="section-title">
-        <h2>Our Academic Programs</h2>
-        <p>Structured Learning from LKG to 10th Standard</p>
+        <small>FEATURED COURSES</small>
+        <h2>Explore Our School</h2>
       </div>
 
-      <div class="academic-grid">
-
-        <div class="academic-card">
-          <h3>🌼 LKG &amp; UKG</h3>
-          <p>Strong foundation through playful and activity-based learning methods.</p>
-        </div>
-
-        <div class="academic-card">
-          <h3>📘 Primary (1 - 4)</h3>
-          <p>Focus on basic concepts, communication skills, and overall development.</p>
-        </div>
-
-        <div class="academic-card">
-          <h3>📗 Middle School (5 - 7)</h3>
-          <p>Concept-oriented teaching with practical exposure and skill development.</p>
-        </div>
-
-        <div class="academic-card highlight-card">
-          <h3>📙 High School (8 - 10)</h3>
-          <p>Special coaching, regular assessments, and board exam preparation support.</p>
-        </div>
-
-        <div class="academic-card">
-          <img src="https://www.mesmarampally.org//wp-content/uploads/2023/07/computerlab.jpeg" height="100px"
-            alt="Computer Lab">
-          <div class="facility-content">
-            <h3>Computer Lab</h3>
-          </div>
-        </div>
-
-      </div>
-      <div class="explore-cards">
-        <article class="explore-card">
-          <img src="./schl6.jpeg" alt="LKG" />
-          <div class="overlay">
-            <h3>🌼 LKG &amp; UKG</h3>
-            <p>Playful learning, social skills and foundational development.</p>
+      <div class="featured-grid">
+        <article class="featured-card">
+          <img src="./schl6.jpeg" alt="Pre School" />
+          <div class="card-body">
+            <h3>Pre School</h3>
+            <p>Strong foundation for academic success.</p>
+            <a href="#" class="btn">Read More</a>
           </div>
         </article>
 
-        <div class="explore-cards">
-          <article class="explore-card">
-            <img src="./schl3.jpeg" alt="Primary" />
-            <div class="overlay">
-              <h3>📘 Primary(1 to 4)</h3>
-              <p>Focus on basic concepts, communication skills, and overall development.</p>
-            </div>
-          </article>
-          <article class="explore-card">
-            <img src="./schl4.jpeg" alt="middle" />
-            <div class="overlay">
-              <h3>📗 Middle School (5 - 7)</h3>
-              <p>Core literacy and numeracy with habit building and exploration.</p>
-            </div>
-          </article>
-          <article class="explore-card">
-            <img src="./schl5.jpeg" alt="Secondary" />
-            <div class="overlay">
-              <h3>📙 High School (8 - 10)</h3>
-              <p>Exam readiness, life skills and academic acceleration.</p>
-            </div>
-          </article>
-          <article class="explore-card">
-            <img src="./schl6.jpeg" alt="computer" />
-            <div class="overlay">
-              <h3>Computer Lab</h3>
-            </div>
-          </article>
-        </div>
+        <article class="featured-card">
+          <img src="./schl3.jpeg" alt="Primary School" />
+          <div class="card-body">
+            <h3>Primary School</h3>
+            <p>Building curiosity, confidence, and core skills.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <img src="./schl4.jpeg" alt="Middle School" />
+          <div class="card-body">
+            <h3>Middle School</h3>
+            <p>Fostering critical thinking and independence.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <img src="./schl5.jpeg" alt="Secondary School" />
+          <div class="card-body">
+            <h3>Secondary School</h3>
+            <p>Shaping future-ready minds with excellence.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
+
+        <article class="featured-card">
+          <img src="./schl6.jpeg" alt="PU College" />
+          <div class="card-body">
+            <h3>PU College</h3>
+            <p>Pathways to passion, purpose and potential.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
       </div>
+    </div>
+  </section>
+
+
+  <!-- Teachers Section -->
+  <section class="teachers" id="teachers">
+    <div class="container">
+      <div class="section-title">
+        <h2>Meet Our Teachers</h2>
+        <p>Experienced educators guiding students with care and expertise.</p>
+      </div>
+
+      <div class="teacher-grid">
+        <article class="teacher-card">
+          <img src="./teacher1.jpg" alt="Mrs. Priya Sharma" />
+          <div class="teacher-body">
+            <h3>Mrs. Priya Sharma</h3>
+            <p>Mathematics Teacher</p>
+            <p>M.Sc. Maths, B.Ed.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
+
+        <article class="teacher-card">
+          <img src="./teacher2.jpg" alt="Mr. Suresh Rao" />
+          <div class="teacher-body">
+            <h3>Mr. Suresh Rao</h3>
+            <p>Science Teacher</p>
+            <p>M.Sc. Physics, B.Ed.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
+
+        <article class="teacher-card">
+          <img src="./teacher3.jpg" alt="Ms. Anjali Nair" />
+          <div class="teacher-body">
+            <h3>Ms. Anjali Nair</h3>
+            <p>English Teacher</p>
+            <p>M.A. English, B.Ed.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
+
+        <article class="teacher-card">
+          <img src="./teacher4.jpg" alt="Mr. Ravi Kumar" />
+          <div class="teacher-body">
+            <h3>Mr. Ravi Kumar</h3>
+            <p>Social Studies Teacher</p>
+            <p>M.A. History, B.Ed.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
+
+        <article class="teacher-card">
+          <img src="./teacher5.jpg" alt="Ms. Sneha Patel" />
+          <div class="teacher-body">
+            <h3>Ms. Sneha Patel</h3>
+            <p>Computer Science Teacher</p>
+            <p>B.E. Computer Science, B.Ed.</p>
+            <a href="#" class="btn">Read More</a>
+          </div>
+        </article>
+      </div>
+    </div>
   </section>
 
   <!-- footer section -->
