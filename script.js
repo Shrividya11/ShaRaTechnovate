@@ -1,3 +1,9 @@
+// Prevent the browser from restoring scroll position on refresh.
+// This ensures the page always starts at the top when reloaded.
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   const header = document.getElementById("header");
   const menuToggle = document.getElementById("menu-toggle");
