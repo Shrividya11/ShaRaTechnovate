@@ -102,11 +102,12 @@ body {
     cursor: pointer;
     transition: 0.3s ease;
     margin-top: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
 }
 
 .get-in-touch-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(252, 163, 17, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.22);
 }
 
 .admissions-right {
@@ -146,12 +147,14 @@ textarea {
     appearance: none;
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.45);
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
     font-size: 14px;
     font-family: Poppins, sans-serif;
-    color: #333;
-    transition: 0.3s ease;
+    color: #111;
+    transition: 0.2s ease;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
 input:focus,
@@ -174,29 +177,49 @@ textarea:focus {
     cursor: pointer;
     transition: 0.3s ease;
     margin-top: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
 }
 
 .form-submit-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(251, 133, 0, 0.3);
+    box-shadow: 0 16px 24px rgba(0, 0, 0, 0.22);
 }
 
 @media (max-width: 768px) {
+    .admissions-section {
+        padding: 60px 4%;
+    }
+
+    .admissions-container {
+        max-width: 100%;
+        margin: 0 16px;
+    }
+
     .admissions-wrapper {
         grid-template-columns: 1fr;
     }
 
     .admissions-left,
     .admissions-right {
-        padding: 40px 30px;
+        padding: 30px 20px;
     }
 
     .admissions-left h2 {
         font-size: 24px;
     }
 
+    .school-name-input {
+        font-size: 22px;
+        min-width: 220px;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
+    }
+
+    .form-submit-btn {
+        font-size: 15px;
+        padding: 14px;
     }
 }
 

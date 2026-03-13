@@ -6,6 +6,10 @@
   font-family: Poppins, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   overflow-x: hidden;
   animation: fadeInPage 1s ease;
@@ -219,40 +223,6 @@ header {
   font-weight: 500;
 }
 
-/* Carousel Indicators */
-/* .carousel-indicators {
-  position: absolute;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-  gap: 12px;
-  display: flex;
-  justify-content: center;
-}
-
-.carousel-indicators [data-bs-target] {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  padding: 0;
-}
-
-.carousel-indicators .active {
-  background-color: #fca311;
-  border-color: #fca311;
-  width: 32px;
-  border-radius: 6px;
-}
-
-.carousel-indicators [data-bs-target]:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  transform: scale(1.15);
-} */
 
 /* Carousel Control Buttons */
 .carousel-control-prev,
@@ -312,11 +282,7 @@ header {
   right: 25px;
 }
 
-/* .carousel-control-prev:hover,
-.carousel-control-next:hover {
-  background: #fca311;
-  transform: translateY(-50%) scale(1.15);
-} */
+
 
 /* Mobile Carousel */
 @media (max-width: 768px) {
@@ -577,61 +543,124 @@ header {
 
 }
 
-/* ================= WHY US SECTION ================= */
+/* ============================= */
+/* 🎓 ACADEMICS SECTION STYLE   */
 
-.why-us {
+/* 🎓 ACADEMICS SECTION STYLE   */
+/* ============================= */
+
+.academics {
+  background: #abb5c0;
+  /* background-color: #0d47a1; */
+  color: #151313;
   padding: 100px 8%;
-  background: #ffffff;
-  text-align: center;
 }
 
-.section-header h2 {
-  font-size: 36px;
-  margin-bottom: 10px;
-  color: #0d1b2a;
+.academics-inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
 }
 
-.section-header p {
-  font-size: 18px;
-  margin-bottom: 60px;
-  color: #555;
-}
-
-.why-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-}
-
-.why-card {
-  background: #f8f9fc;
-  padding: 40px 25px;
-  border-radius: 20px;
-  transition: all 0.4s ease;
+.academics-text {
+  flex: 1 1 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
   position: relative;
+  z-index: 1;
+  /* background-color: #ccc; */
+  border-radius: 12px;
+  align-items: center;
+  text-align: center;
+
 }
 
-.why-card .icon {
+.academics-text h2 {
   font-size: 40px;
+  text-align: center;
   margin-bottom: 20px;
 }
 
-.why-card h3 {
-  font-size: 20px;
-  margin-bottom: 15px;
+.academics-cards-viewport {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  position: relative;
 }
 
-.why-card p {
-  font-size: 15px;
-  color: #555;
-  line-height: 1.6;
+.academics-cards {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: academics-marquee var(--marquee-duration, 28s) linear infinite;
 }
 
-/* Hover Premium Effect */
-.why-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-  background: #ffffff;
+.academics-cards-viewport:hover .academics-cards,
+.academics-cards-viewport:focus-within .academics-cards {
+  animation-play-state: paused;
+}
+
+/* Equal visible space on both left/right edges while cards move */
+.academics-cards-viewport::before,
+.academics-cards-viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  /* background: #ccc; */
+  pointer-events: none;
+  width: 100%;
+  z-index: 2;
+}
+
+.academics-cards-viewport::before {
+  left: 0;
+}
+
+.academics-cards-viewport::after {
+  right: 0;
+}
+
+.academics-cards .card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: left;
+  flex: 0 0 300px;
+}
+
+@keyframes academics-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.academics-cards .card .icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.academics-image {
+  flex: 1 1 400px;
+  text-align: center;
+}
+
+.academics-image img {
+  max-width: 100%;
+  border-radius: 12px;
 }
 
 /* ================= STATS SECTION ================= */
@@ -669,7 +698,7 @@ header {
   transform: translateY(-10px);
 }
 
-/* ================= CTA SECTION ================= */
+/* =================Admissions  SECTION ================= */
 
 .cta {
   padding: 120px 8%;
@@ -722,6 +751,18 @@ header {
   padding: 100px 8%;
   background: #f9fafc;
   text-align: center;
+}
+
+.section-header h2 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #0d1b2a;
+}
+
+.section-header p {
+  font-size: 18px;
+  margin-bottom: 60px;
+  color: #555;
 }
 
 .testimonial-slider {
@@ -780,6 +821,10 @@ header {
   transform: scale(1.08);
 }
 
+.gallery .btn-primary {
+  display: inline-block;
+  margin: 40px auto 0;
+}
 
 /* .map-section {
   margin-top: 80px;
@@ -892,19 +937,20 @@ header {
   position: fixed;
   bottom: 80px;
   right: 10px;
-  background: #fca311;
+  background: linear-gradient(45deg, #ffb703, #fb8500);
   color: #000;
   padding: 12px 20px;
   border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
   transition: 0.3s ease;
   z-index: 998;
 }
 
 .apply-sticky:hover {
-  transform: translateY(-5px);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.22);
 }
 
 
@@ -955,28 +1001,6 @@ header {
 .achievement-grid div:hover {
   transform: translateY(-10px);
   background: linear-gradient(45deg, #1f2937, #111827);
-}
-
-/* ============================= */
-/* 🎉 EVENTS                     */
-/* ============================= */
-
-.events-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.event-card {
-  background: #111827;
-  padding: 30px;
-  border-radius: 20px;
-  transition: 0.4s;
-}
-
-.event-card:hover {
-  transform: translateY(-10px);
 }
 
 /* ============================= */
@@ -1033,17 +1057,6 @@ header {
 /* ============================= */
 /* 🎓 ADMISSIONS                 */
 /* ============================= */
-
-.admissions ol {
-  margin: 20px 0;
-  padding-left: 20px;
-}
-
-.admissions li {
-  margin-bottom: 10px;
-}
-
-/* ============================= */
 /* 📞 CONTACT FORM               */
 /* ============================= */
 
@@ -1069,4 +1082,319 @@ form button {
   font-weight: 600;
   cursor: pointer;
   background: linear-gradient(45deg, #ffb703, #fb8500);
+}
+
+/* ============================= */
+/* MOBILE FLOATING BUTTONS      */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .whatsapp-float {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .whatsapp-float1 {
+    bottom: 80px;
+    left: 10px;
+  }
+
+  .apply-sticky {
+    bottom: 150px;
+    right: 10px;
+  }
+}
+
+/* ===== ACADEMICS SECTION ===== */
+.academics {
+  padding: 80px 0;
+  /* background: #555; */
+}
+
+.academic-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.academic-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 10px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.academic-card h3 {
+  margin-bottom: 15px;
+  color: #0d47a1;
+}
+
+.academic-card p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.academic-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Highlight High School */
+.highlight-card {
+  background: #0d47a1;
+  color: #555;
+}
+
+.highlight-card h3 {
+  color: #ffc107;
+}
+
+.highlight-card p {
+  color: white;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 992px) {
+  .academic-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .academic-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.explore-btn-wrapper {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.explore-cards {
+  margin-top: 28px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.explore-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.explore-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.22);
+}
+
+.explore-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.explore-card .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(110, 9, 73, 0.55);
+  color: #fff;
+  opacity: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  text-align: center;
+  transition: opacity 0.25s ease;
+}
+
+.explore-card h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+}
+
+.explore-card p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.explore-card:hover .overlay {
+  opacity: 1;
+}
+
+.explore-card .overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(252, 163, 17, 0.86), rgba(14, 68, 149, 0.8));
+  mix-blend-mode: normal;
+  opacity: 0.9;
+}
+
+.explore-card .overlay h3,
+.explore-card .overlay p {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== FEATURED COURSES / EXPLORE ===== */
+.featured-courses {
+  padding: 80px 0;
+  background: #f2f4f9;
+}
+
+.featured-courses .section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.featured-courses .section-title small {
+  display: inline-block;
+  letter-spacing: 1px;
+  color: #f59e0b;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.featured-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.featured-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 28px rgba(0, 0, 0, 0.2);
+}
+
+.featured-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.featured-card .card-body {
+  padding: 22px 18px 26px;
+}
+
+.featured-card h3 {
+  margin: 0 0 10px;
+  font-size: 18px;
+  color: #0d47a1;
+}
+
+.featured-card p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.featured-card .btn {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: #f59e0b;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.25s ease;
+}
+
+.featured-card .btn:hover {
+  background: #dc7a0d;
+}
+
+/* ===== TEACHERS SECTION ===== */
+.teachers {
+  padding: 80px 0;
+  background: #f7f8fb;
+}
+
+.teachers .section-title h2 {
+  color: #0d47a1;
+}
+
+.teacher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.teacher-card {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
+  padding-bottom: 22px;
+}
+
+.teacher-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.18);
+}
+
+.teacher-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.teacher-card .teacher-body {
+  padding: 18px 16px 16px;
+}
+
+.teacher-card h3 {
+  margin: 14px 0 6px;
+  font-size: 20px;
+  color: #0d47a1;
+}
+
+.teacher-card p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.teacher-card .btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: #f59e0b;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.25s ease;
+  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.25);
+}
+
+.teacher-card .btn:hover {
+  background: #dc7a0d;
 }
