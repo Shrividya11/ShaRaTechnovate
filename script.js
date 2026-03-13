@@ -1,46 +1,92 @@
-const header = document.getElementById("header");
-const menuToggle = document.getElementById("menu-toggle");
-const navLinks = document.getElementById("nav-links");
+document.addEventListener('DOMContentLoaded', function () {
+  const header = document.getElementById("header");
+  const menuToggle = document.getElementById("menu-toggle");
+  const navLinks = document.getElementById("nav-links");
+  const academicsCards = document.getElementById("academics-cards");
 
-menuToggle.addEventListener("click", function (e) {
-  e.stopPropagation();
-  navLinks.classList.toggle("active");
-});
+  if (menuToggle) {
+    menuToggle.addEventListener("click", function (e) {
+      e.stopPropagation();
+      navLinks.classList.toggle("active");
+    });
+  }
 
-document.addEventListener("click", function () {
-  navLinks.classList.remove("active");
-});
-
-// ================= SMOOTH SCROLL TO SECTIONS =================
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const href = this.getAttribute('href');
-    if (href === '#') return;
-
-    e.preventDefault();
-    const target = document.querySelector(href);
-
-    if (target) {
-      // scroll so the top of the section sits right below the fixed header
-      const headerHeight = header.offsetHeight;
-      const scrollPos = target.offsetTop - headerHeight;
-      window.scrollTo({ top: scrollPos, behavior: 'smooth' });
+  document.addEventListener("click", function () {
+    if (navLinks) {
       navLinks.classList.remove("active");
     }
   });
-});
 
-// academics "explore more" toggle
-const exploreBtn = document.getElementById('explore-more');
-const academicsSection = document.getElementById('academics');
+  // ================= SMOOTH SCROLL TO SECTIONS =================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === '#') {
+        e.preventDefault();
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        if (navLinks) {
+          navLinks.classList.remove("active");
+        }
+        return;
+      }
 
-if (exploreBtn) {
-  exploreBtn.addEventListener('click', () => {
-    academicsSection.classList.toggle('c-expanded');
-    exploreBtn.textContent = academicsSection.classList.contains('c-expanded') ? 'Show Less' : 'Explore More';
+      e.preventDefault();
+      const target = document.querySelector(href);
+
+      if (target) {
+        const headerHeight = header ? header.offsetHeight : 100;
+        const rect = target.getBoundingClientRect();
+
+        // Align the section flush below the fixed header (no visible gap).
+        const top = Math.max(0, window.scrollY + rect.top - headerHeight);
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        if (navLinks) {
+          navLinks.classList.remove("active");
+        }
+      }
+    });
   });
-}
 
+  // ================= AUTO-SCROLL ACADEMICS CARDS =================
+  if (academicsCards) {
+    const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let rafId = null;
+    let paused = false;
+    let lastTs = 0;
+
+    const speedPxPerSec = 45; // horizontal scroll speed
+    const maxScrollLeft = () => Math.max(0, academicsCards.scrollWidth - academicsCards.clientWidth);
+
+    const tick = (ts) => {
+      if (!lastTs) lastTs = ts;
+      const dt = ts - lastTs;
+      lastTs = ts;
+
+      if (!paused && !prefersReducedMotion && maxScrollLeft() > 0) {
+        academicsCards.scrollLeft += (speedPxPerSec * dt) / 1000;
+        if (academicsCards.scrollLeft >= maxScrollLeft() - 1) {
+          academicsCards.scrollLeft = 0;
+        }
+      }
+
+      rafId = window.requestAnimationFrame(tick);
+    };
+
+    academicsCards.addEventListener("mouseenter", () => { paused = true; });
+    academicsCards.addEventListener("mouseleave", () => { paused = false; });
+    academicsCards.addEventListener("focusin", () => { paused = true; });
+    academicsCards.addEventListener("focusout", () => { paused = false; });
+
+    rafId = window.requestAnimationFrame(tick);
+
+    window.addEventListener("beforeunload", () => {
+      if (rafId) window.cancelAnimationFrame(rafId);
+    });
+  }
+});
 
 // ================= SCROLL PROGRESS =================
 window.addEventListener("scroll", function () {
@@ -123,3 +169,14 @@ function slideTestimonials() {
 }
 
 setInterval(slideTestimonials, 4000);
+
+// ================= CAROUSEL AUTO-SLIDE =================
+
+const carousel = document.querySelector('#carouselExampleCaptions');
+if (carousel) {
+  const carouselInstance = new bootstrap.Carousel(carousel, {
+    interval: 5000, // 5 seconds
+    ride: 'carousel',
+    wrap: true // Keep looping
+  });
+}

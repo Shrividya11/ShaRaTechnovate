@@ -86,7 +86,19 @@ section {
   border-radius: 40px;
   text-decoration: none;
   font-weight: 600;
-  transition: 0.4s;
+  transition: all 0.4s ease;
+}
+
+.btn-primary,
+.btn-secondary,
+.explore-more-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
 }
 
 .btn-primary {
@@ -94,8 +106,21 @@ section {
   color: #000;
 }
 
-.btn-primary:hover {
-  transform: scale(1.08);
+.btn-primary:hover,
+.explore-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 24px rgba(0, 0, 0, 0.22);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background: #fff;
+  color: #000;
 }
 
 .btn-secondary {
@@ -173,19 +198,69 @@ p {
 }
 
 .academics-text {
-  flex: 1 1 400px;
+  flex: 1 1 100%;
+  max-width: 1300px;
+  margin-left: auto;
+  padding: 20px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  /* background-color: #ccc; */
+  border-radius: 12px;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .academics-text h2 {
   font-size: 40px;
-  text-align: left;
+  text-align: center;
   margin-bottom: 20px;
 }
 
+.academics-cards-viewport {
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+  position: relative;
+}
+
 .academics-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  display: flex;
+  flex-wrap: nowrap;
   gap: 20px;
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  animation: academics-marquee var(--marquee-duration, 28s) linear infinite;
+}
+
+.academics-cards-viewport:hover .academics-cards,
+.academics-cards-viewport:focus-within .academics-cards {
+  animation-play-state: paused;
+}
+
+/* Equal visible space on both left/right edges while cards move */
+.academics-cards-viewport::before,
+.academics-cards-viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  /* background: #ccc; */
+  pointer-events: none;
+  width: 100%;
+  z-index: 2;
+}
+
+.academics-cards-viewport::before {
+  left: 0;
+}
+
+.academics-cards-viewport::after {
+  right: 0;
 }
 
 .academics-cards .card {
@@ -193,6 +268,17 @@ p {
   padding: 20px;
   border-radius: 12px;
   text-align: left;
+  flex: 0 0 300px;
+}
+
+@keyframes academics-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-1 * var(--marquee-distance, 1600px)));
+  }
 }
 
 .academics-cards .card .icon {
